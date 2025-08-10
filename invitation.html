@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Diwali Invitation — Family</title>
+  <meta name="description" content="A responsive digital Diwali invitation with RSVP via QR code." />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fff;
+      --card:#fff;
+      --text:#111;
+      --muted:#666;
+      --accent:#ffb020;
+      --radius:16px;
+      --maxw:950px;
+      --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Nunito', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+      background-color: var(--bg);
+      color:var(--text);
+      padding:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position: relative;
+      overflow: hidden;
+    }
+    .invite-wrap{width:100%;max-width:var(--maxw);margin:auto; position: relative; z-index: 10;}
+    .card{
+      display:grid;grid-template-columns:1fr 420px;gap:28px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.75));
+      border-radius:var(--radius);padding:28px;
+      box-shadow:0 10px 30px rgba(15,20,30,0.06);
+      backdrop-filter: blur(6px);
+      overflow:hidden
+    }
+    .hero{padding:10px 6px}
+    .badge{display:inline-block;padding:6px 10px;border-radius:12px;font-weight:800;font-size:12px}
+    .title{font-size:36px;line-height:1;margin:12px 0 6px}
+    .subtitle{color:var(--muted);margin-bottom:14px}
+    .details{display:grid;gap:12px;margin-top:10px}
+    .detail{display:flex;gap:12px;align-items:center}
+    .chip{min-width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700}
+    .art{
+      border-radius:12px;height:100%;display:flex;flex-direction:column;gap:14px;
+      padding:14px;background:linear-gradient(180deg,rgba(255,250,240,0.9),rgba(255,255,255,0.6));
+      align-items:center;justify-content:center;text-align:center
+    }
+    .big{font-size:56px;font-weight:900}
+    .rsvp{width:100%;background:rgba(255,255,255,0.9);border-radius:12px;padding:14px;box-shadow:0 8px 18px rgba(15,20,30,0.04)}
+    .rsvp h4{margin:0 0 8px}
+    .rsvp p{margin:0 0 12px;color:var(--muted)}
+    .qr-code{max-width:160px;margin:auto;display:block}
+    footer.note{margin-top:12px;color:var(--muted);font-size:13px;text-align:center}
+
+    a.button, a.button:link, a.button:visited {
+      transition: background-color 0.3s ease, outline 0.3s ease;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+    a.button:hover, a.button:focus {
+      background-color: #e09c00;
+      outline: 2px solid #ffb020;
+      outline-offset: 2px;
+    }
+
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr;}
+      .art{order:-1}
+      .title{font-size:28px}
+      .big{font-size:44px}
+    }
+
+    /* Slideshow container behind the card */
+    .slideshow-container {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      border-radius: var(--radius);
+      filter: brightness(0.85);
+    }
+
+    .slide.active {
+      opacity: 0.3; /* subtle visible */
+    }
+  </style>
+</head>
+<body>
+
+<div class="invite-wrap">
+
+  <!-- Slideshow of 4 pics from unsplash -->
+  <div class="slideshow-container" aria-hidden="true" aria-label="Background slideshow images">
+    <div class="slide active" style="background-image: url('d.png');"></div>
+   <div class="slide active" style="background-image: url('p.png');"></div>
+   <div class="slide active" style="background-image: url('h.png');"></div>
+   <div class="slide active" style="background-image: url('i.png');"></div>
+  </div>
+
+  <article class="card" role="article" aria-labelledby="inv-title">
+
+    <section class="hero">
+      <span class="badge" style="background:linear-gradient(90deg,var(--accent),#ffd580);color:white">You're Invited</span>
+      <h1 id="inv-title" class="title">Happy Diwali!</h1>
+      <div class="subtitle">Join us for an evening of lights, sweets, and togetherness.</div>
+
+      <div class="details">
+        <div class="detail">
+          <div class="chip" style="background:linear-gradient(135deg,var(--accent), #ffe0a3);color:white">📅</div>
+          <div>
+            <div style="font-weight:800">Sunday, March 16</div>
+            <div class="muted">Arrival from 4:00 PM • Ceremony at 6:00 PM</div>
+          </div>
+        </div>
+
+        <div class="detail">
+          <div class="chip" style="background:linear-gradient(135deg,var(--accent), #ffe0a3);color:white">📍</div>
+          <div>
+            <div style="font-weight:800">Garden Lawn, Sunrise Residency</div>
+            <div class="muted">123 Festival Lane, Cityname</div>
+          </div>
+        </div>
+
+        <div class="detail">
+          <div class="chip" style="background:linear-gradient(135deg,var(--accent), #ffe0a3);color:white">🎉</div>
+          <div>
+            <div style="font-weight:800">Dress</div>
+            <div class="muted">Traditional / Festive (colors encouraged)</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="https://calendar.google.com/calendar/r/eventedit?text=Diwali%20Invitation%20-%20Satya%20%26%20Family&dates=20250316T100000Z/20250316T130000Z&details=Join%20us%20for%20an%20evening%20of%20lights,%20sweets,%20and%20togetherness.%20Arrival%20from%204%3A00%20PM%20%E2%80%A2%20Ceremony%20at%206%3A00%20PM&location=Garden%20Lawn,%20Sunrise%20Residency,%20123%20Festival%20Lane,%20Cityname" target="_blank" rel="noopener noreferrer" aria-label="Add Diwali invitation to Google Calendar" class="button" style="background: var(--accent); color: white; padding: 10px 14px; border-radius: 12px; font-weight: 700; font-size: 0.9rem;">Add to Google Calendar</a>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=123+Festival+Lane,+Cityname" target="_blank" rel="noopener noreferrer" aria-label="View location on Google Maps" class="button" style="background:#444; color:#fff; padding: 10px 14px; border-radius: 12px; font-weight: 700; font-size: 0.9rem;">View Location on Google Maps</a>
+
+        <a href="https://api.whatsapp.com/send?text=Join%20us%20for%20Diwali%20Celebration%20on%20March%2016!%20Details%20at%20https%3A%2F%2Fexample.com" target="_blank" rel="noopener noreferrer" aria-label="Share invitation on WhatsApp" class="button" style="background:#25D366; color:#fff; padding: 10px 14px; border-radius: 12px; font-weight: 700; font-size: 0.9rem;">Share on WhatsApp</a>
+
+        <a href="https://www.instagram.com/stories/create/" target="_blank" rel="noopener noreferrer" aria-label="Add invitation to Instagram Story" class="button" style="background:#E1306C; color:#fff; padding: 10px 14px; border-radius: 12px; font-weight: 700; font-size: 0.9rem;">Add to Instagram Story</a>
+      </div>
+
+      <p class="muted" style="margin-top:18px">Host: <strong>Satya & Family</strong></p>
+    </section>
+
+    <aside class="art" aria-label="Invitation art & RSVP">
+      <div style="width:100%">
+        <div class="big" aria-hidden="true">🪔</div>
+        <div style="font-weight:800;font-size:18px;margin-top:8px">Festival of Lights</div>
+        <p class="muted" style="margin-top:6px">An evening filled with diyas, music, sweets, and warm moments.</p>
+      </div>
+
+      <div class="rsvp">
+        <h4>RSVP</h4>
+        <p class="muted">Scan the QR code below to RSVP via email.</p>
+        <a href="mailto:host@example.com?subject=RSVP%20-%20Diwali%20Invitation" aria-label="RSVP via email">
+          <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=mailto:host@example.com?subject=RSVP%20-%20Diwali%20Invitation" alt="QR Code to RSVP">
+        </a>
+      </div>
+
+      <footer class="note">Questions? Call +91 98765 43210</footer>
+    </aside>
+
+  </article>
+
+  <p class="muted" style="text-align:center;margin-top:12px">Use Print → Save as PDF to get a printable copy.</p>
+
+  <div style="text-align:center; margin-top:24px;">
+    <button
+      onclick="window.print()"
+      style="padding: 12px 20px; font-size: 1rem; background: var(--accent); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 700;"
+      aria-label="Print and download invitation"
+    >
+      Print & Download Invitation
+    </button>
+  </div>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 5000);
+</script>
+
+</body>
+</html>
